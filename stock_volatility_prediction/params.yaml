@@ -1,0 +1,34 @@
+# Data parameters
+data:
+  start_date: '2020-01-01'
+  end_date: '2023-01-01'
+  stock_symbols: ['AAPL']
+
+# Feature engineering parameters
+features:
+  window_size: 20
+  lag_periods: [1, 2, 3, 5]
+  volatility_window: 10  # Added for rolling window model
+
+# GARCH model parameters
+garch:
+  p: 1
+  q: 1
+  distribution: 'normal'  # Added more GARCH options
+  vol: 'GARCH'
+
+# LSTM model parameters
+lstm:
+  input_window: 60
+  epochs: 100
+  batch_size: 32
+  hidden_units: 50
+  dropout_rate: 0.2
+  learning_rate: 0.001
+
+# Rolling Window model parameters
+rolling_window:
+  train_test_split: 0.8
+  refit_frequency: 5  # How often to retrain the model
+  min_train_size: 100  # Minimum training samples required
+

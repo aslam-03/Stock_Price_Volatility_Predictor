@@ -1,0 +1,47 @@
+stages:
+  fetch_data:
+    cmd: python -c "from Research.data_processor import DataProcessor; DataProcessor().get_multiple_stocks(['AAPL'], '2020-01-01', '2023-01-01')"
+    deps:
+      - Research/data_processor.py
+    outs:
+      - Research/processed2/AAPL_raw.csv
+
+  feature_engineering:
+    cmd: python -c "from Research.feature_engineering import FeatureEngineer; import pandas as pd; import os; os.makedirs('Research/processed', exist_ok=True); data = pd.read_csv('Research/processed2/AAPL_raw.csv', index_col=0, parse_dates=True); FeatureEngineer().create_features(data).to_csv('Research/processed/AAPL_features.csv')"
+    deps:
+      - Research/processed2/AAPL_raw.csv
+      - Research/feature_engineering.py
+    outs:
+      - Research/processed/AAPL_features.csv
+
+  train_garch:
+    cmd: python models/garch_model.py
+    deps:
+      - models/garch_model.py
+      - Research/processed/AAPL_features.csv
+    outs:
+      - models/saved/garch_model_AAPL.pkl
+
+  train_lstm:
+    cmd: python models/lstm_model.py
+    deps:
+      - models/lstm_model.py
+      - Research/processed/AAPL_features.csv
+    outs:
+      - models/saved/lstm_model_AAPL.pkl
+
+  train_rolling_window:
+    cmd: python models/rolling_window_model.py
+    deps:
+      - models/rolling_window_model.py
+      - Research/processed/AAPL_features.csv
+    outs:
+      - models/saved/rolling_window_model_AAPL.pkl
+
+  evaluate:
+    cmd: python models/model_evaluator.py
+    deps:
+      - models/model_evaluator.py
+      - models/saved/garch_model_AAPL.pkl
+      - models/saved/lstm_model_AAPL.pkl
+      - models/saved/rolling_window_model_AAPL.pkl

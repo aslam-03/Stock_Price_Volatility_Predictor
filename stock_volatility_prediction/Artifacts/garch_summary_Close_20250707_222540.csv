@@ -1,0 +1,2 @@
+model_type,ticker,p_param,q_param,mean_model,vol_model,distribution,num_predictions,mean_prediction,std_prediction,min_prediction,max_prediction,timestamp,aic,bic,log_likelihood
+GARCH,Close,1,1,constant,GARCH,normal,100,0.017311927273392626,0.0037124688037700297,0.013498435618984698,0.025927121717454413,2025-07-07T22:25:40.021488,1793.5602524221301,1810.3133089144605,-892.7801262110651

@@ -1,0 +1,35 @@
+schema: '2.0'
+stages:
+  fetch_data:
+    cmd: python -c "from Research.data_processor import DataProcessor; 
+      DataProcessor().get_multiple_stocks(['AAPL'], '2020-01-01', '2023-01-01')"
+    deps:
+    - path: Research/data_processor.py
+      hash: md5
+      md5: fe5e7d785f9cf4f476ac825146bfdb02
+      size: 4901
+    outs:
+    - path: Research/processed2/AAPL_raw.csv
+      hash: md5
+      md5: 7431c3adb7ddc93b3f2e587d2e64bf7f
+      size: 78363
+  feature_engineering:
+    cmd: python -c "from Research.feature_engineering import FeatureEngineer; 
+      import pandas as pd; import os; os.makedirs('Research/processed', 
+      exist_ok=True); data = pd.read_csv('Research/processed2/AAPL_raw.csv', 
+      index_col=0, parse_dates=True); 
+      FeatureEngineer().create_features(data).to_csv('Research/processed/AAPL_features.csv')"
+    deps:
+    - path: Research/feature_engineering.py
+      hash: md5
+      md5: 22800f430f65518e4fd8f14fe123761b
+      size: 11524
+    - path: Research/processed2/AAPL_raw.csv
+      hash: md5
+      md5: 7431c3adb7ddc93b3f2e587d2e64bf7f
+      size: 78363
+    outs:
+    - path: Research/processed/AAPL_features.csv
+      hash: md5
+      md5: bf76a3617cd2c1594dc9cd4e0304621a
+      size: 851970

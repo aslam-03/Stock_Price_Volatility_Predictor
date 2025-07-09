@@ -1,0 +1,2 @@
+model_type,ticker,window_size,n_estimators,max_depth,random_state,num_predictions,mean_prediction,std_prediction,min_prediction,max_prediction,num_features,is_fitted,timestamp,top_features
+LSTM_RandomForest,AAPL,30,100,10,42,100,0.24826911149747116,0.015807041065226946,0.1972966107735211,0.27151394575333615,24,True,2025-07-07T22:26:08.520685,"[('Price_Range_10', 0.0020720450139161076), ('BB_Width', 0.0013765126820595517), ('MACD', 0.0010121435028700371), ('ATR', 0.000626737987614548), ('Returns_Std_5', 0.00048412848890702664)]"

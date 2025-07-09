@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/0/e6c044b36ba6445d92ebba2d39c78f64/artifacts
+end_time: 1751357471534
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: e6c044b36ba6445d92ebba2d39c78f64
+run_name: merciful-worm-752
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1751357471323
+status: 3
+tags: []
+user_id: ASLAM

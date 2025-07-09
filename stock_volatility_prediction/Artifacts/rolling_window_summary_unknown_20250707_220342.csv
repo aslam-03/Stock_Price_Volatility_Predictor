@@ -1,0 +1,2 @@
+model_type,ticker,window_size,num_predictions,mean_prediction,std_prediction,min_prediction,max_prediction,timestamp
+RollingWindow,unknown,30,70,0.45968137586198654,0.12703690744642224,0.28175057476585413,0.6674939558329761,2025-07-07T22:03:42.341485
